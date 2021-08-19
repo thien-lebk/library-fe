@@ -1,0 +1,8 @@
+  <div class="product-item">
+    <a [href]="data?.postSrc"  ><img [src]="data?.imgSrc ===null? '../../../assets/common-img/default-image-620x600.jpeg':data?.imgSrc" alt=""></a>
+    <div class="down-content">
+      <a [href]="data?.postSrc"><h4>{{data?.title}}</h4></a>
+      <p>{{data?.description}}</p>
+
+    </div>
+  </div>

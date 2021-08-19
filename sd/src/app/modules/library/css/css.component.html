@@ -1,0 +1,15 @@
+<div class="latest-products">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Latest Products</h2>
+          <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4"  *ngFor="let ele of data">
+        <app-lb-card-item-with-review [data]="ele" ></app-lb-card-item-with-review>
+      </div>
+    </div>
+  </div>
+</div>
