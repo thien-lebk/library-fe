@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {LibCardDto} from '../../../modal/lib-card-dto';
 
 @Component({
@@ -7,9 +7,15 @@ import {LibCardDto} from '../../../modal/lib-card-dto';
   styleUrls: ['./lb-card-item-with-review.component.scss']
 })
 export class LbCardItemWithReviewComponent implements OnInit {
-@Input() data: LibCardDto | undefined;
+  @Input() data: LibCardDto | undefined;
+  @Input() postSrc = '';
+  @Input() imgSrc = '';
+  @Input() title = '';
+  @Input() description = '';
+  @Input() id = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

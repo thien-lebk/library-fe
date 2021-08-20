@@ -18,7 +18,7 @@ export class CssComponent implements OnInit {
       const key = data[0];
       const returnData: any = [];
       for (let i = 1; i < data.length; i++) {
-        const value: LibCardDto = new LibCardDto(data[i]);
+        const value: LibCardDto = new LibCardDto();
         returnData.push(value);
       }
       return returnData;

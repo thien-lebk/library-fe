@@ -9,6 +9,8 @@ import {RouterModule} from '@angular/router';
 import {DropdownModule} from 'primeng/dropdown';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -21,7 +23,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RouterModule,
     DropdownModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   exports: [
     LbCardItemWithReviewComponent,

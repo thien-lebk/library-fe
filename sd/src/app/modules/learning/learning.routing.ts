@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import {ListComponent} from './list/list.component';
 import {FormComponent} from './form/form.component';
-import {LearningDetalComponent} from './learning-detal/learning-detal.component';
+import {LearningDetalComponent} from './learning-detail/learning-detal.component';
+import {QuizComponent} from './quiz/quiz.component';
 
 export const learningRoutes: Routes = [
   {
@@ -16,17 +17,6 @@ export const learningRoutes: Routes = [
         path: 'list',
         component: ListComponent,
         data: {
-          title: 'Danh sách khoá học',
-          urls: [
-            { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Dashboard 1' }
-          ]
-        }
-      },
-      {
-        path: 'detail',
-        component: LearningDetalComponent,
-        data: {
           title: 'Chi tiết khoá học',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
@@ -38,7 +28,29 @@ export const learningRoutes: Routes = [
         path: 'add',
         component: FormComponent,
         data: {
-          title: 'Tag khóa học',
+          title: 'Add khóa học',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Dashboard 1' }
+          ]
+        }
+      },
+      {
+        path: 'detail/:id',
+        component: LearningDetalComponent,
+        data: {
+          title: 'Detail khóa học',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Dashboard 1' }
+          ]
+        }
+      },
+      {
+        path: 'quiz',
+        component: QuizComponent,
+        data: {
+          title: 'Detail khóa học',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Dashboard 1' }

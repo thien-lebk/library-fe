@@ -1,0 +1,48 @@
+<div class="content">
+  <mat-accordion class="example-headers-align" multi>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title style="flex-basis: unset;">
+          {{book.title}}
+        </mat-panel-title>
+        <mat-panel-description style="justify-content: flex-end;">
+          <mat-icon>menu_book</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div style="margin: 10px 5px;">
+        <p>
+          {{book.description}}
+        </p>
+      </div>
+      <mat-expansion-panel *ngFor="let chapter of book.chapterList" style="margin: 10px 0;">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{chapter.title}}
+          </mat-panel-title>
+          <mat-panel-description style="justify-content: flex-end;">
+            <mat-icon>auto_stories</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div style="margin: 10px 5px;">
+          <p>
+            {{chapter.description}}
+          </p>
+        </div>
+        <div style="padding-left: 10px;" *ngFor="let ex of chapter.exerciseList">
+          <a  [routerLink]="['../../quiz']" >{{ex.title}}</a>
+
+        </div>
+
+
+
+
+      </mat-expansion-panel>
+
+
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</div>

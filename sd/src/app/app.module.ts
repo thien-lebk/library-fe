@@ -8,8 +8,18 @@ import {LibraryModule} from './modules/library/library.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { LearningDetalComponent } from './modules/learning/learning-detal/learning-detal.component';
+import { LearningDetalComponent } from './modules/learning/learning-detail/learning-detal.component';
 import { AgGridModule } from 'ag-grid-angular';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioButton, MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -26,9 +36,20 @@ import { AgGridModule } from 'ag-grid-angular';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    AgGridModule.withComponents([])
+    MatIconModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatRadioModule,
+    AgGridModule.withComponents([]),
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

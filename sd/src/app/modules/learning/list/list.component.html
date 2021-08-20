@@ -1,1 +1,11 @@
-<p>list works!</p>
+<div class="main-content">
+
+  <div class="container-wrap" style="display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+">
+    <div *ngFor="let book of listBook" style="margin: 10px 10px;">
+      <app-lb-card-item-with-review [title]="book.title" [description]="book.description"
+                                    [imgSrc]="book.imgSrc" [id]="book.id"></app-lb-card-item-with-review>
+    </div>
+  </div>
+</div>

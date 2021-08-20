@@ -1,11 +1,9 @@
 import {ExerciseDto} from './ExerciseDto';
 
-export class LibCardDto {
-
-
+export class ChapterDto {
   title?: string;
   description?: string;
   id?: number;
-  postSrc?: string;
   imgSrc?: string;
+  exerciseList: ExerciseDto[] = [];
 }
