@@ -11,11 +11,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { DropDownComponent } from './ag-grid/drop-down/drop-down.component';
+import { CheckBoxTrueFalseComponent } from './ag-grid/check-box-true-false/check-box-true-false.component';
+import { RemoveRowComponent } from './ag-grid/remove-row/remove-row.component';
 
 
 
 @NgModule({
-  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent],
+  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent],
   imports: [
     CommonModule,
     FormsModule,

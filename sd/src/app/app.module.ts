@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioButton, MatRadioModule} from '@angular/material/radio';
 import { FormSubQuestionComponent } from './modules/add-quiz-form/form-sub-question/form-sub-question.component';
 import {LearningModule} from './modules/learning/learning.module';
+import {RemoveRowComponent} from './shared/ag-grid/remove-row/remove-row.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import {LearningModule} from './modules/learning/learning.module';
         MatExpansionModule,
         MatInputModule,
         MatRadioModule,
-        AgGridModule.withComponents([]),
+        AgGridModule.withComponents([RemoveRowComponent]),
         MatExpansionModule,
         LearningModule
     ],

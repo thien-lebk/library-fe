@@ -4,15 +4,17 @@
     <label id="example-radio-group-label">{{q.title}}</label>
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
-      class="example-radio-group">
+      class="example-radio-group"
+      [(ngModel)]="q.correctAnswer">
+
       <div>{{q.question}}</div>
 
-      <mat-radio-button class="example-radio-button" *ngFor="let ans of q.selectAnswerList" [value]="ans.isAnswer" [class.isanswer]="q.showAnswer && ans.isAnswer">
+      <mat-radio-button class="example-radio-button" *ngFor="let ans of q.selectAnswerList" [value]="ans.content" [class.isanswer]="q.showAnswer && ans.isAnswer">
         {{ans.content}}
       </mat-radio-button>
     </mat-radio-group>
 
-    <div class="btn btn-primary" (click)="handleShowAnswer()">Hiển thị đáp án</div>
+    <div class="btn btn-primary" (click)="handleShowAnswer()">{{showAnswerBtn}}</div>
     <div *ngIf="showAnswer">
       <div class="answer" >
         <p>Ghi chú</p>

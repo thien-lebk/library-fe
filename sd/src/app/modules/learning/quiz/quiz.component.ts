@@ -31,12 +31,14 @@ export class QuizComponent implements OnInit {
     }
     this.showNoteEditNote = !this.showNoteEditNote;
   }
-
   saveEditNotes(): void {
 
   }
 
   handleShowAnswer(): void {
+    console.log(this.showAnswer);
+    console.log(this.showAnswerBtn);
+    console.log(this.question);
     if (this.showAnswer) {
       this.showAnswerBtn = 'Ẩn đáp án';
     } else {

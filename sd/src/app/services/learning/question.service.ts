@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {SourceObject} from './source';
 import {Question} from '../../modal/Question';
 import {QuestionDto} from '../../modal/QuestionDto';
+import {SelectAnswerDto} from '../../modal/SelectAnswerDto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +40,14 @@ export class QuestionService {
       }
     });
   }
-  update(data: Question): Observable<any> {
 
+  update(data: Question, listAnswerRemove: SelectAnswerDto[]): Observable<any> {
+    const questionDto = new QuestionDto();
+    questionDto.question = data;
+    questionDto.listAnswerRemove = listAnswerRemove;
     const url = `${SourceObject.route}/question/create`;
-    const body = JSON.stringify(data);
+    const body = JSON.stringify(questionDto);
+    console.log(listAnswerRemove);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

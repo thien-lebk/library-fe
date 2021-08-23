@@ -1,16 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {BookService} from '../../../services/learning/book.service';
-import {BookDto} from '../../../modal/Book';
-import {ChapterDto} from '../../../modal/ChapterDto';
-import {GridApi} from 'ag-grid-community';
-import {AgGridColumn} from 'ag-grid-angular';
 import {SubQuestionDto} from '../../../modal/SubQuestionDto';
 import {SelectAnswerDto} from '../../../modal/SelectAnswerDto';
 import {Question} from '../../../modal/Question';
 import {QuestionService} from '../../../services/learning/question.service';
 import {QuestionDto} from '../../../modal/QuestionDto';
 import {ActivatedRoute} from '@angular/router';
+import {CheckBoxTrueFalseComponent} from '../../../shared/ag-grid/check-box-true-false/check-box-true-false.component';
+import {RemoveRowComponent} from '../../../shared/ag-grid/remove-row/remove-row.component';
+
 
 @Component({
   selector: 'app-add-quiz-form',
@@ -18,13 +16,14 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./add-quiz-form.component.scss']
 })
 export class AddQuizFormComponent implements OnInit {
-  idChapter: number | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private questionService: QuestionService,
               private activatedRoute: ActivatedRoute
   ) {
   }
+
+  idChapter: number | undefined;
 
   question: Question = new Question();
 
@@ -42,18 +41,46 @@ export class AddQuizFormComponent implements OnInit {
 
 
   columnDefsSelectAnswerList = [
-
+    {
+      headerName: '', field: 'remove',
+      cellRenderer: 'removeRow',
+      cellRendererParams: {
+        onClick: this.removeRowAction.bind(this)
+      },
+      resizable: true,
+      width: 70,
+    },
     {
       headerName: 'Content', field: 'content', sortable: true, filter: true, editable: true, resizable: true
     },
     {
-      headerName: 'Is Answer ?', field: 'isAnswer', sortable: true, filter: true, editable: true, resizable: true
+      headerName: 'Answer', field: 'isAnswer',
+      cellRenderer: 'checkboxtruefalse',
+      resizable: true,
+      width: 100,
     },
     {
       headerName: 'Image', field: 'imgSrc', sortable: true, filter: true, editable: true, resizable: true
     }
   ];
+  frameworkComponents = {
+    checkboxtruefalse: CheckBoxTrueFalseComponent,
+    removeRow: RemoveRowComponent
+  };
   idQuestion = '';
+  listRemoveSelectAnswer: SelectAnswerDto[] = [];
+
+  removeRowAction(data: any): void {
+    console.log(data);
+    if (data.data.id) {
+      this.listRemoveSelectAnswer.push(data.data);
+      this.question.subQuestionList.forEach(ele => {
+        ele.selectAnswerList = ele.selectAnswerList.filter(ele2 => {
+          return ele2.id !== data.data.id;
+        });
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -75,7 +102,6 @@ export class AddQuizFormComponent implements OnInit {
             formBuilder.patchValue(data);
             data.formBuilder = formBuilder;
           });
-          console.log(this.listSubQuestion);
         });
       }
     });
@@ -124,23 +150,23 @@ export class AddQuizFormComponent implements OnInit {
       submitQuestion.imgSrc = this.checkoutForm.value.imgSrc;
       submitQuestion.correctAnswer = this.checkoutForm.value.correctAnswer;
       submitQuestion.id = String(this.idQuestion);
-      this.listSubQuestion.forEach((value, index) => {
+      console.log(this.question);
+      console.log(this.listSubQuestion);
+      console.log(this.question.subQuestionList);
+
+      this.question.subQuestionList.forEach((value, index) => {
         const data = value.formBuilder.value;
-        console.log(value);
-        console.log(data);
         submitQuestion.subQuestionList[index] = new SubQuestionDto();
-        console.log(submitQuestion.subQuestionList[index]);
         submitQuestion.subQuestionList[index].id = value.id;
         submitQuestion.subQuestionList[index].imgSrc = data.imgSrc;
         submitQuestion.subQuestionList[index].question = data.question;
         submitQuestion.subQuestionList[index].showAnswer = data.showAnswer;
-        submitQuestion.subQuestionList[index].selectAnswerList = data.selectAnswerList;
         submitQuestion.subQuestionList[index].correctAnswer = data.correctAnswer;
         submitQuestion.subQuestionList[index].title = data.title;
-        submitQuestion.subQuestionList[index].selectAnswerList = data.selectAnswerList;
+        submitQuestion.subQuestionList[index].selectAnswerList = value.selectAnswerList;
       });
-      console.log(submitQuestion);
-      this.questionService.update(submitQuestion).subscribe(ele => {
+
+      this.questionService.update(submitQuestion, this.listRemoveSelectAnswer).subscribe(ele => {
         if (ele.status === 200) {
           console.log('success');
         }

@@ -1,4 +1,5 @@
 import {SubQuestionDto} from './SubQuestionDto';
+import {SelectAnswerDto} from './SelectAnswerDto';
 
 export class Question {
   title?: string;
@@ -8,4 +9,5 @@ export class Question {
   imgSrc?: string;
   subQuestionList: SubQuestionDto[] = [];
   isActive = false;
+  listRemoveSelectAnswer: SelectAnswerDto[] = [];
 }
