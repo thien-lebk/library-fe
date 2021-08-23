@@ -1,4 +1,3 @@
-import {ExerciseDto} from './ExerciseDto';
 
 export class LibCardDto {
 

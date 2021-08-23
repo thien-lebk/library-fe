@@ -1,9 +1,9 @@
-import {ExerciseDto} from './ExerciseDto';
+import {Question} from './Question';
 
 export class ChapterDto {
   title?: string;
   description?: string;
   id?: number;
   imgSrc?: string;
-  exerciseList: ExerciseDto[] = [];
+  questionList: Question[] = [];
 }

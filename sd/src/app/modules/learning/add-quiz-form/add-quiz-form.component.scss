@@ -81,7 +81,21 @@ button {
   margin: 3.125rem auto 0 auto;
 }
 
+@media (min-width: 576px) {
 
+  .container {
+    max-width: 540px;
+  }
+
+}
+
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 720px;
+  }
+
+}
 
 
 .header {
@@ -179,7 +193,14 @@ form {
   cursor: pointer;
 }
 
-
+.header{
+  p{
+    font-size: 30px;
+    font-family: sans-serif;
+    color: white;
+    text-transform: uppercase;
+  }
+}
 
 
 

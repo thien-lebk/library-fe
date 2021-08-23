@@ -3,6 +3,7 @@ import {ListComponent} from './list/list.component';
 import {FormComponent} from './form/form.component';
 import {LearningDetalComponent} from './learning-detail/learning-detal.component';
 import {QuizComponent} from './quiz/quiz.component';
+import {AddQuizFormComponent} from './add-quiz-form/add-quiz-form.component';
 
 export const learningRoutes: Routes = [
   {
@@ -51,6 +52,28 @@ export const learningRoutes: Routes = [
         component: QuizComponent,
         data: {
           title: 'Detail khóa học',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Dashboard 1' }
+          ]
+        }
+      },
+      {
+        path: 'add-quiz/:idChapter',
+        component: AddQuizFormComponent,
+        data: {
+          title: 'Thêm quiz',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Dashboard 1' }
+          ]
+        }
+      },
+      {
+        path: 'edit-quiz/:idQuestion',
+        component: AddQuizFormComponent,
+        data: {
+          title: 'Thêm quiz',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Dashboard 1' }

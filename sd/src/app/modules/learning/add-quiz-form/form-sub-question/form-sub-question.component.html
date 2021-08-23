@@ -1,0 +1,52 @@
+<!--       Start add sub question-->
+<mat-expansion-panel style="margin: 10px 0;">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Question {{indexAdd}}
+    </mat-panel-title>
+    <mat-panel-description style="justify-content: flex-end;">
+      <span style="margin-right: 5px" (click)="removeSubQuestion(indexAdd)">Remove</span>
+      <mat-icon (click)="removeSubQuestion(indexAdd)">delete_outline</mat-icon>
+
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <form [formGroup]="formSubQuestion" (change)="onChangeForm()">
+  <div style="margin: 10px 5px;">
+    <div  >
+      <mat-label>Title</mat-label>
+      <input matInput  formControlName="title">
+    </div>
+    <div  >
+      <mat-label>Question</mat-label>
+      <input matInput  formControlName="question" >
+    </div>
+    <div  >
+      <mat-label>Correct Answer</mat-label>
+      <input matInput  formControlName="correctAnswer">
+    </div>
+    <div  >
+      <mat-label>Image</mat-label>
+      <input matInput  formControlName="imgSrc">
+    </div>
+  </div>
+  </form>
+  <!--          <div style="padding-left: 10px;" *ngFor="let ex of chapter.exerciseList">-->
+  <!--            <a  [routerLink]="['../../quiz']" >{{ex.title}}</a>-->
+  <!--          </div>-->
+  <div (click)="addAnswer(indexAdd)" style="cursor: pointer">
+    <span style="margin-right: 5px" >Add Answer</span>
+    <mat-icon>library_add</mat-icon>
+  </div>
+
+  <ag-grid-angular
+    style="width: 100%; height: 150px;"
+    class="ag-theme-alpine"
+    [rowData]="subQuestion.selectAnswerList"
+    [columnDefs]="columnDefsSelectAnswerList"
+    (gridReady)="onGridReady($event)"
+  >
+
+  </ag-grid-angular>
+
+</mat-expansion-panel>
+<!--       End add sub question-->

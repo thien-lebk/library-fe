@@ -1,11 +1,29 @@
-<label id="example-radio-group-label">Pick your favorite season</label>
-<mat-radio-group
-  aria-labelledby="example-radio-group-label"
-  class="example-radio-group"
-  [(ngModel)]="favoriteSeason">
-  <div>Your favorite season is: {{favoriteSeason}}</div>
+<div class="wrap-content">
+ <p>{{question.title}}</p>
+  <div class="content" *ngFor="let q of question.subQuestionList">
+    <label id="example-radio-group-label">{{q.title}}</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group">
+      <div>{{q.question}}</div>
 
-  <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-    {{season}}
-  </mat-radio-button>
-</mat-radio-group>
+      <mat-radio-button class="example-radio-button" *ngFor="let ans of q.selectAnswerList" [value]="ans.isAnswer" [class.isanswer]="q.showAnswer && ans.isAnswer">
+        {{ans.content}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <div class="btn btn-primary" (click)="handleShowAnswer()">Hiển thị đáp án</div>
+    <div *ngIf="showAnswer">
+      <div class="answer" >
+        <p>Ghi chú</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde! Libero?</p>
+        <div class="btn btn-warning"(click)="handleNode()">Sửa ghi chú</div>
+      </div>
+      <div class="edit-note" *ngIf="showNoteEditNote">
+        <textarea style="width: 100%; min-height: 150px" [value]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde! Libero?'"></textarea>
+        <div class="btn btn-success"(click)="saveEditNotes()">Lưu ghi chú</div>
+      </div>
+    </div>
+  </div>
+</div>
+

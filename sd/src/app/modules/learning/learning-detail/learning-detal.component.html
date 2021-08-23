@@ -20,23 +20,26 @@
           <mat-panel-title>
             {{chapter.title}}
           </mat-panel-title>
-          <mat-panel-description style="justify-content: flex-end;">
-            <mat-icon>auto_stories</mat-icon>
-          </mat-panel-description>
+          <a [routerLink]="['../../add-quiz',chapter.id]">
+            <mat-panel-description style="justify-content: flex-end;">
+              <span style="margin-right: 5px">Add question</span>
+              <mat-icon>library_add</mat-icon>
+            </mat-panel-description>
+          </a>
+
         </mat-expansion-panel-header>
         <div style="margin: 10px 5px;">
           <p>
             {{chapter.description}}
           </p>
         </div>
-        <div style="padding-left: 10px;" *ngFor="let ex of chapter.exerciseList">
-          <a  [routerLink]="['../../quiz']" >{{ex.title}}</a>
+        <div style="padding-left: 10px;" *ngFor="let ex of chapter.questionList; let i = index">
+          <p  (click)="ex.isActive = !ex.isActive" >Question {{i + 1}} <a [routerLink]="['../../edit-quiz',ex.id]">Edit Question</a></p>
 
+          <div *ngIf="ex.isActive">
+            <app-quiz [question]="ex"></app-quiz>
+          </div>
         </div>
-
-
-
-
       </mat-expansion-panel>
 
 

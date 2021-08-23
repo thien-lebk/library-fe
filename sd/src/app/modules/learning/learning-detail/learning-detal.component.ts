@@ -15,15 +15,18 @@ export class LearningDetalComponent implements OnInit {
   constructor(private router: Router, private aRoute: ActivatedRoute, private bookService: BookService
   ) {
   }
+
   book: BookDto = new BookDto();
   showFiller = false;
 
   ngOnInit(): void {
     this.bookService.getDetail(this.aRoute.snapshot.params.id).subscribe(ele => {
-      console.log(ele);
-      this.book = ele;
+      this.book = ele.data;
       this.accordion.openAll();
     });
   }
 
+  actionClickQuestion(id: number): void {
+
+  }
 }

@@ -20,33 +20,37 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioButton, MatRadioModule} from '@angular/material/radio';
+import { FormSubQuestionComponent } from './modules/add-quiz-form/form-sub-question/form-sub-question.component';
+import {LearningModule} from './modules/learning/learning.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LearningDetalComponent,
+    FormSubQuestionComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    LibraryModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatExpansionModule,
-    MatInputModule,
-    MatRadioModule,
-    AgGridModule.withComponents([]),
-    MatExpansionModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule,
+        LibraryModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatExpansionModule,
+        MatInputModule,
+        MatRadioModule,
+        AgGridModule.withComponents([]),
+        MatExpansionModule,
+        LearningModule
+    ],
   providers: [MatDatepickerModule,
 
   ],

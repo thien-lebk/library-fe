@@ -16,7 +16,7 @@ export class BookService {
   ) {
   }
 
-  getList(): Observable<BookDto[]> {
+  getList(): Observable<any> {
     const url = `${SourceObject.route}/book/list`;
     return this.http.get<any>(url);
   }
@@ -33,7 +33,7 @@ export class BookService {
     return this.http.post<any>(url, body, httpOptions);
   }
 
-  getDetail(id: string): Observable<BookDto> {
+  getDetail(id: string): Observable<any> {
     const url = `${SourceObject.route}/book/detail`;
 
     return this.http.get<any>(url, {

@@ -1,0 +1,99 @@
+
+
+<div class="main-content">
+
+  <div class="container">
+    <div class="header" style="text-align: center">
+      <p style="">Thêm Câu hỏi</p>
+    </div>
+
+    <form id="survey-form"  [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label id="name-label" for="title">Title</label>
+        <input type="text" name="title" id="title" class="form-control" formControlName="title" placeholder="Enter Title" required>
+      </div>
+      <div class="form-group">
+        <label id="au-label" for="au">Content</label>
+        <input type="text" name="au" id="au" class="form-control" formControlName="question" placeholder="Enter Content" required>
+      </div>
+      <div class="form-group">
+        <label id="ans-label" for="au">Answer</label>
+        <input type="text" name="au" id="ans" class="form-control" formControlName="answer" placeholder="Enter Answer" required>
+      </div>
+      <div class="form-group">
+        <label id="typ-label" for="typ">Type</label>
+        <input type="text" name="typ" id="typ" class="form-control" formControlName="type" placeholder="Enter Type" required>
+      </div>
+      <div class="form-group">
+        <label id="img-label" for="img">Image</label>
+        <input type="text" name="img" id="img" class="form-control" formControlName="imgSrc" placeholder="Enter Image Link" >
+      </div>
+      <div class="list-chapter">
+        <div class="btn-add btn btn-primary" style="margin-bottom: 10px" (click)="addSubQuestion()">
+          Add Sub Question
+        </div>
+        <!--       Start add sub question-->
+        <mat-expansion-panel style="margin: 10px 0;" *ngFor="let subQ of listSubQuestion; let i = index;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Question {{i}}
+            </mat-panel-title>
+            <mat-panel-description style="justify-content: flex-end;">
+              <span style="margin-right: 5px" (click)="removeSubQuestion(i)">Remove</span>
+              <mat-icon (click)="removeSubQuestion(i)">delete_outline</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <form [formGroup]="subQ.formBuilder" (change)="changeForm(subQ.formBuilder)" (submit)="changeForm(subQ.formBuilder)">
+            <div style="margin: 10px 5px;">
+              <div  >
+                <mat-label>Title</mat-label>
+                <input matInput  formControlName="title">
+              </div>
+              <div  >
+                <mat-label>Question</mat-label>
+                <input matInput  formControlName="question" >
+              </div>
+              <div  >
+                <mat-label>Correct Answer</mat-label>
+                <input matInput  formControlName="correctAnswer">
+              </div>
+              <div  >
+                <mat-label>Image</mat-label>
+                <input matInput  formControlName="imgSrc">
+              </div>
+            </div>
+          </form>
+          <div (click)="addAnswer(i)" style="cursor: pointer">
+            <span style="margin-right: 5px" >Add Answer</span>
+            <mat-icon>library_add</mat-icon>
+          </div>
+
+          <ag-grid-angular
+            style="width: 100%; height: 150px;"
+            class="ag-theme-alpine"
+            [rowData]="subQ.selectAnswerList"
+            [columnDefs]="columnDefsSelectAnswerList"
+            (gridReady)="onGridReady($event,i)"
+          >
+
+          </ag-grid-angular>
+
+        </mat-expansion-panel>
+        <!--       End add sub question-->
+
+
+      </div>
+
+      <div class="form-group">
+
+        <button style="background-color: #b15ec599;
+margin-top: 10px;" id="submit" class="submit-button" type="submit" >Submit</button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
