@@ -15,26 +15,29 @@ import { AddQuizFormComponent } from './add-quiz-form/add-quiz-form.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormSubQuestionComponent } from './add-quiz-form/form-sub-question/form-sub-question.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { FormEditSubquestionQuizComponent } from './quiz/form-edit-subquestion-quiz/form-edit-subquestion-quiz.component';
 
 
 
 @NgModule({
-    declarations: [FormComponent, ListComponent, QuizComponent, AddQuizFormComponent, FormSubQuestionComponent],
+    declarations: [FormComponent, ListComponent, QuizComponent, AddQuizFormComponent, FormSubQuestionComponent, FormEditSubquestionQuizComponent],
     exports: [
         QuizComponent
     ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(learningRoutes),
-        AgGridModule,
-        ReactiveFormsModule,
-        MatCardModule,
-        MatIconModule,
-        SharedModule,
-        MatRadioModule,
-        FormsModule,
-        MatExpansionModule,
-        MatFormFieldModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(learningRoutes),
+    AgGridModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    SharedModule,
+    MatRadioModule,
+    FormsModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatMenuModule
+  ]
 })
 export class LearningModule { }

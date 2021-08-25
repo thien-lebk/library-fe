@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Question} from '../../../modal/Question';
+import {SubQuestionDto} from '../../../modal/SubQuestionDto';
 
 @Component({
   selector: 'app-quiz',
@@ -21,6 +22,9 @@ export class QuizComponent implements OnInit {
   showAnswerBtn = 'Hiển thị đáp án';
 
   ngOnInit(): void {
+    this.question.subQuestionList.forEach(ele => {
+      ele.showAnswer = false;
+    });
   }
 
   handleNode(): void {
@@ -31,21 +35,25 @@ export class QuizComponent implements OnInit {
     }
     this.showNoteEditNote = !this.showNoteEditNote;
   }
+
   saveEditNotes(): void {
 
   }
 
-  handleShowAnswer(): void {
-    console.log(this.showAnswer);
-    console.log(this.showAnswerBtn);
-    console.log(this.question);
-    if (this.showAnswer) {
+  openFormEditQuestion(): void {
+
+  };
+
+  handleShowAnswer(index: number): void {
+    const q = this.question.subQuestionList[index];
+    if (!q.showAnswer) {
       this.showAnswerBtn = 'Ẩn đáp án';
+      this.question.subQuestionList[index].showAnswer = true;
     } else {
       this.showNoteEditNote = false;
       this.showEditNotesBtn = 'Hiển thị ghi chú';
       this.showAnswerBtn = 'Hiển thị đáp án';
+      this.question.subQuestionList[index].showAnswer = false;
     }
-    this.showAnswer = !this.showAnswer;
   }
 }

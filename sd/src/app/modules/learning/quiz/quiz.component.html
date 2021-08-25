@@ -1,29 +1,44 @@
 <div class="wrap-content">
- <p>{{question.title}}</p>
-  <div class="content" *ngFor="let q of question.subQuestionList">
-    <label id="example-radio-group-label">{{q.title}}</label>
+  <p>{{question.title}}</p>
+  <div class="content" *ngFor="let q of question.subQuestionList; let i= index;">
+    <div class="wrap-title-question">
+      <label id="example-radio-group-label">{{q.title}}</label>
+      <div class="action-question">
+        <div [matMenuTriggerFor]="menu">
+          <mat-icon>home_repair_service</mat-icon>
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openFormEditQuestion()">Sửa</button>
+          <button mat-menu-item>Xóa</button>
+        </mat-menu>
+      </div>
+    </div>
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
       class="example-radio-group"
       [(ngModel)]="q.correctAnswer">
-
+      <div *ngIf="q.imgSrc"><img [src]="q.imgSrc"></div>
       <div>{{q.question}}</div>
-
-      <mat-radio-button class="example-radio-button" *ngFor="let ans of q.selectAnswerList" [value]="ans.content" [class.isanswer]="q.showAnswer && ans.isAnswer">
+      <mat-radio-button class="example-radio-button" *ngFor="let ans of q.selectAnswerList" [value]="ans.content"
+                        [class.isanswer]="q.showAnswer && ans.isAnswer">
         {{ans.content}}
       </mat-radio-button>
     </mat-radio-group>
 
-    <div class="btn btn-primary" (click)="handleShowAnswer()">{{showAnswerBtn}}</div>
-    <div *ngIf="showAnswer">
-      <div class="answer" >
+    <div class="btn btn-primary" (click)="handleShowAnswer(i)" *ngIf="q.showAnswer == false">Hiển thị đáp án</div>
+    <div class="btn btn-primary" (click)="handleShowAnswer(i)" *ngIf="q.showAnswer == true">Ẩn đáp án</div>
+    <div *ngIf="q.showAnswer">
+      <div class="answer">
         <p>Ghi chú</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde! Libero?</p>
-        <div class="btn btn-warning"(click)="handleNode()">Sửa ghi chú</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum
+          excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde!
+          Libero?</p>
+        <div class="btn btn-warning" (click)="handleNode()">Sửa ghi chú</div>
       </div>
       <div class="edit-note" *ngIf="showNoteEditNote">
-        <textarea style="width: 100%; min-height: 150px" [value]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde! Libero?'"></textarea>
-        <div class="btn btn-success"(click)="saveEditNotes()">Lưu ghi chú</div>
+        <textarea style="width: 100%; min-height: 150px"
+                  [value]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum delectus deleniti dignissimos dolor, eum excepturi in incidunt iste iure iusto, perferendis possimus ratione repellendus, rerum sed suscipit unde! Libero?'"></textarea>
+        <div class="btn btn-success" (click)="saveEditNotes()">Lưu ghi chú</div>
       </div>
     </div>
   </div>

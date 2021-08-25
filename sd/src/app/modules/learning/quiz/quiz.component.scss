@@ -11,6 +11,15 @@
 .answer{
   margin: 10px 0;
 }
-isanswer{
+.isanswer{
   color: blue !important;
+  font-weight: bold;
+}
+.wrap-title-question{
+  position: relative;
+  .action-question{
+    position: absolute;
+    right: -24px;
+    top: 0;
+  }
 }
