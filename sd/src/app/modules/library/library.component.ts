@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AlertService} from '../../services/alert/alertService';
 
 @Component({
   selector: 'app-library',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertService: AlertService) {
+  }
 
   ngOnInit(): void {
   }
+
 
 }

@@ -6,6 +6,7 @@ import {PostDto} from '../../../modal/PostDto';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteActivatedEvent, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {AlertService} from '../../../services/alert/alertService';
 
 @Component({
   selector: 'app-lb-form-card',
@@ -16,6 +17,7 @@ export class LbFormCardComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private postService: PostService,
+              private alertService: AlertService,
   ) {
   }
 

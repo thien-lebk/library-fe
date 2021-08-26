@@ -23,6 +23,9 @@ import {MatRadioButton, MatRadioModule} from '@angular/material/radio';
 import { FormSubQuestionComponent } from './modules/add-quiz-form/form-sub-question/form-sub-question.component';
 import {LearningModule} from './modules/learning/learning.module';
 import {RemoveRowComponent} from './shared/ag-grid/remove-row/remove-row.component';
+import {AlertModule} from './alert/alert.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import {RemoveRowComponent} from './shared/ag-grid/remove-row/remove-row.compone
         MatRadioModule,
         AgGridModule.withComponents([RemoveRowComponent]),
         MatExpansionModule,
-        LearningModule
+        LearningModule,
+        AlertModule,
+      MatProgressSpinnerModule,
+      MatProgressBarModule
     ],
   providers: [MatDatepickerModule,
 

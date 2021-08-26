@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatAccordion} from '@angular/material/expansion';
 import {BookService} from '../../../services/learning/book.service';
 import {BookDto} from '../../../modal/Book';
+import {LoadingService} from '../../../services/alert/loadingService';
 
 @Component({
   selector: 'app-learning-detal',
@@ -12,7 +13,8 @@ import {BookDto} from '../../../modal/Book';
 export class LearningDetalComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion = new MatAccordion();
 
-  constructor(private router: Router, private aRoute: ActivatedRoute, private bookService: BookService
+  constructor(private router: Router, private aRoute: ActivatedRoute, private bookService: BookService,
+              private loadingService: LoadingService,
   ) {
   }
 
@@ -20,9 +22,11 @@ export class LearningDetalComponent implements OnInit {
   showFiller = false;
 
   ngOnInit(): void {
+    this.loadingService.startLoading();
     this.bookService.getDetail(this.aRoute.snapshot.params.id).subscribe(ele => {
       this.book = ele.data;
       this.accordion.openAll();
+      this.loadingService.stopLoading();
     });
   }
 

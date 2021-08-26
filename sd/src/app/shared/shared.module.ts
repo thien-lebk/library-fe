@@ -14,11 +14,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { DropDownComponent } from './ag-grid/drop-down/drop-down.component';
 import { CheckBoxTrueFalseComponent } from './ag-grid/check-box-true-false/check-box-true-false.component';
 import { RemoveRowComponent } from './ag-grid/remove-row/remove-row.component';
+import { LoadingCommonComponent } from './loading-common/loading-common.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
 @NgModule({
-  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent],
+  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent, LoadingCommonComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,12 +30,14 @@ import { RemoveRowComponent } from './ag-grid/remove-row/remove-row.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressBarModule
   ],
-  exports: [
-    LbCardItemWithReviewComponent,
-    HeaderComponent,
-    FooterComponent
-  ]
+    exports: [
+        LbCardItemWithReviewComponent,
+        HeaderComponent,
+        FooterComponent,
+        LoadingCommonComponent
+    ]
 })
 export class SharedModule { }

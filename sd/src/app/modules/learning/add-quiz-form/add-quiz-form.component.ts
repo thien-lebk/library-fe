@@ -8,6 +8,8 @@ import {QuestionDto} from '../../../modal/QuestionDto';
 import {ActivatedRoute} from '@angular/router';
 import {CheckBoxTrueFalseComponent} from '../../../shared/ag-grid/check-box-true-false/check-box-true-false.component';
 import {RemoveRowComponent} from '../../../shared/ag-grid/remove-row/remove-row.component';
+import {AlertService} from '../../../services/alert/alertService';
+import {LoadingService} from '../../../services/alert/loadingService';
 
 
 @Component({
@@ -19,9 +21,13 @@ export class AddQuizFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private questionService: QuestionService,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
+              private alertService: AlertService,
+              private loadingService: LoadingService,
   ) {
   }
+
+
 
   idChapter: number | undefined;
 
@@ -71,7 +77,6 @@ export class AddQuizFormComponent implements OnInit {
   listRemoveSelectAnswer: SelectAnswerDto[] = [];
 
   removeRowAction(data: any): void {
-    console.log(data);
     if (data.data.id) {
       this.listRemoveSelectAnswer.push(data.data);
       this.question.subQuestionList.forEach(ele => {
@@ -83,9 +88,11 @@ export class AddQuizFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadingService.startLoading();
     this.activatedRoute.params.subscribe(params => {
       if (params.idChapter) {
         this.idChapter = params.idChapter;
+        this.loadingService.stopLoading();
       } else {
         this.idQuestion = params.idQuestion;
         this.questionService.getDetail(this.idQuestion).subscribe(ele => {
@@ -102,7 +109,10 @@ export class AddQuizFormComponent implements OnInit {
             formBuilder.patchValue(data);
             data.formBuilder = formBuilder;
           });
+          this.loadingService.stopLoading();
+
         });
+
       }
     });
   }
@@ -174,7 +184,9 @@ export class AddQuizFormComponent implements OnInit {
     }
 
   }
-
+  addAlert(): void {
+    this.alertService.success('Test Alert');
+  }
   onGridReady(params: any, index: number): void {
     this.listSubQuestion[index].gripApi = params.api;
     this.listSubQuestion[index].gridComlumnApi = params.columnApi;

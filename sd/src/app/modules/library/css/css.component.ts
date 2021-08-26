@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from '../../../services/library/post.service';
 import {LibCardDto} from '../../../modal/lib-card-dto';
+import {LoadingService} from '../../../services/alert/loadingService';
 
 @Component({
   selector: 'app-css',
@@ -10,10 +11,13 @@ import {LibCardDto} from '../../../modal/lib-card-dto';
 export class CssComponent implements OnInit {
   data: LibCardDto[] = [];
 
-  constructor(private cssService: PostService) {
+  constructor(private cssService: PostService,
+              private loadingService: LoadingService,
+  ) {
   }
 
   ngOnInit(): void {
+    this.loadingService.startLoading();
     function makeObject(data: any): any {
       const key = data[0];
       const returnData: any = [];
@@ -25,6 +29,7 @@ export class CssComponent implements OnInit {
     }
     this.cssService.getList().subscribe(ele => {
       this.data =  ele;
+      this.loadingService.stopLoading();
     });
   }
 }
