@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {LoadingService} from '../../services/alert/loadingService';
+import {LoadingService} from '../../services/loadingService';
 
 @Component({
   selector: 'app-loading-common',
@@ -16,11 +16,12 @@ export class LoadingCommonComponent implements OnInit {
   }
 
   @Input() loading = false;
-
+  @Input() loadingForm = false;
   ngOnInit(): void {
     this.loadingSub = this.loadingService.loadingObject
       .subscribe(data => {
-        this.loading = data;
+        this.loading = data.loading;
+        this.loadingForm = data.loadingForm;
       });
   }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../../services/learning/book.service';
 import {BookDto} from '../../../modal/Book';
-import {LoadingService} from '../../../services/alert/loadingService';
+import {LoadingService} from '../../../services/loadingService';
 
 @Component({
   selector: 'app-list',

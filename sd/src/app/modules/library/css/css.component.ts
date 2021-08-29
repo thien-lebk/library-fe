@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from '../../../services/library/post.service';
 import {LibCardDto} from '../../../modal/lib-card-dto';
-import {LoadingService} from '../../../services/alert/loadingService';
+import {LoadingService} from '../../../services/loadingService';
 
 @Component({
   selector: 'app-css',

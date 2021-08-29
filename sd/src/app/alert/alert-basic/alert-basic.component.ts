@@ -30,7 +30,6 @@ export class AlertBasicComponent implements OnInit, OnDestroy {
         if (!alert.message) {
           // filter out alerts without 'keepAfterRouteChange' flag
           this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
-
           // remove 'keepAfterRouteChange' flag on the rest
           this.alerts.forEach(x => delete x.keepAfterRouteChange);
           return;
@@ -40,7 +39,7 @@ export class AlertBasicComponent implements OnInit, OnDestroy {
         this.alerts.push(alert);
 
         // auto close alert if required
-        setTimeout(() => this.removeAlert(alert), 3000);
+        setTimeout(() => this.removeAlert(alert), 5000);
       });
 
     // clear alerts on location change

@@ -15,6 +15,9 @@ export class AlertService {
   }
 
   // convenience methods
+  successRouteChange(message: string, options?: any): void {
+    this.alert(new Alert({...options, type: AlertType.Success, message, keepAfterRouteChange: true}));
+  }
   success(message: string, options?: any): void {
     this.alert(new Alert({...options, type: AlertType.Success, message}));
   }

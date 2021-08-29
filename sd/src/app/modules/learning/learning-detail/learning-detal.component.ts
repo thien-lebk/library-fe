@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatAccordion} from '@angular/material/expansion';
 import {BookService} from '../../../services/learning/book.service';
 import {BookDto} from '../../../modal/Book';
-import {LoadingService} from '../../../services/alert/loadingService';
+import {LoadingService} from '../../../services/loadingService';
 
 @Component({
   selector: 'app-learning-detal',

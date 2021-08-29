@@ -4,6 +4,17 @@
   position: absolute;
   top: 80px;
   width: 100vw;
-  background-color: #8a2be22b;
+  background-color: #b58fe3;
   z-index: 99;
+}
+.wrap-loading-form{
+  height: 100vh;
+  position: relative;
+  background-color: #8a2be22b !important;
+  z-index: 99;
+  .loading{
+    left: 50%;
+    position: absolute;
+    top: 35%;
+  }
 }

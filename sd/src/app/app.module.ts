@@ -26,6 +26,7 @@ import {RemoveRowComponent} from './shared/ag-grid/remove-row/remove-row.compone
 import {AlertModule} from './alert/alert.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
         LearningModule,
         AlertModule,
       MatProgressSpinnerModule,
-      MatProgressBarModule
+      MatProgressBarModule,
+      NgbModule
     ],
   providers: [MatDatepickerModule,
 

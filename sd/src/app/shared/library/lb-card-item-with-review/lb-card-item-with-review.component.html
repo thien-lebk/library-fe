@@ -1,16 +1,53 @@
-  <div class="product-item" *ngIf="data">
-    <a [href]="data?.postSrc"  ><img [src]="data?.imgSrc ===null? '../../../assets/common-img/default-image-620x600.jpeg':data?.imgSrc" alt=""></a>
-    <div class="down-content">
-      <a [href]="data?.postSrc"><h4>{{data?.title}}</h4></a>
-      <p>{{data?.description}}</p>
-
+<div class="product-item" *ngIf="data">
+  <div class="action">
+    <mat-icon id="dropdownMenuButton" (click)="showDropdown =!showDropdown " data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">list
+    </mat-icon>
+    <div class="menu-dropdown" *ngIf="showDropdown">
+      <a class="dropdown-item"  (click)="openDialog()">Sửa
+        <mat-icon
+          style="font-size: 11px;
+    height: 12px;
+    width: 12px;"
+        >edit
+        </mat-icon>
+      </a>
+      <a class="dropdown-item" (click)="open(content)">Xóa
+        <mat-icon style="font-size: 11px;
+    color: red;
+    height: 12px;
+    width: 12px;">remove_circle_outline
+        </mat-icon>
+      </a>
     </div>
   </div>
-  <div class="product-item" *ngIf="!data">
-    <a   [routerLink]="['../detail',id]" ><img [src]="imgSrc ===null? '../../../assets/common-img/default-image-620x600.jpeg':imgSrc" alt=""></a>
-    <div class="down-content">
-      <a  [routerLink]="['../detail',id]" ><h4>{{title}}</h4></a>
-      <p>{{description}}</p>
-
+  <!--    Modal delete start-->
+  <ng-template #content let-modal>
+    <div class="modal-body">
+      <p>Do you want to delete this post ?</p>
     </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" *ngIf="data.id" (click)="deletePost(data.id)">Yes</button>
+      <button class="btn btn-warning" id="closeModal" (click)="modal.close('Save click')">No</button>
+    </div>
+  </ng-template>
+  <!--    Modal delete end-->
+
+  <a [href]="data?.postSrc">
+    <img [src]="data?.imgSrc ===null? '../../../assets/common-img/default-image-620x600.jpeg':data?.imgSrc" alt="">
+  </a>
+  <div class="down-content">
+    <a [href]="data?.postSrc"><h4>{{data?.title}}</h4></a>
+    <p>{{data?.description}}</p>
+
   </div>
+</div>
+<div class="product-item" *ngIf="!data">
+  <a [routerLink]="['../detail',id]"><img
+    [src]="imgSrc ===null? '../../../assets/common-img/default-image-620x600.jpeg':imgSrc" alt=""></a>
+  <div class="down-content">
+    <a [routerLink]="['../detail',id]"><h4>{{title}}</h4></a>
+    <p>{{description}}</p>
+
+  </div>
+</div>

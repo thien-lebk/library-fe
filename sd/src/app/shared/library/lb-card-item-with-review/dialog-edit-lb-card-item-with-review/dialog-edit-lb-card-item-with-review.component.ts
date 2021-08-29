@@ -1,29 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
-import {PostService} from '../../../services/library/post.service';
-import {TopicDto} from '../../../modal/TopicDto';
-import {PostDto} from '../../../modal/PostDto';
+import {PostService} from '../../../../services/library/post.service';
+import {AlertService} from '../../../../services/alert/alertService';
+import {LoadingService} from '../../../../services/loadingService';
+import {TopicDto} from '../../../../modal/TopicDto';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {MatAutocompleteActivatedEvent, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {AlertService} from '../../../services/alert/alertService';
-import {LoadingService} from '../../../services/loadingService';
-import {ActivatedRoute} from '@angular/router';
+import {PostDto} from '../../../../modal/PostDto';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {TopicService} from '../../../../services/library/topicService';
 
 @Component({
-  selector: 'app-lb-form-card',
-  templateUrl: './lb-form-card.component.html',
-  styleUrls: ['./lb-form-card.component.scss']
+  selector: 'app-dialog-edit-lb-card-item-with-review',
+  templateUrl: './dialog-edit-lb-card-item-with-review.component.html',
+  styleUrls: ['./dialog-edit-lb-card-item-with-review.component.scss']
 })
-export class LbFormCardComponent implements OnInit {
+export class DialogEditLbCardItemWithReviewComponent implements OnInit {
+
 
   constructor(private formBuilder: FormBuilder,
               private postService: PostService,
               private alertService: AlertService,
               private loadingService: LoadingService,
-              private activatedRoute: ActivatedRoute,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private topic$: TopicService,
   ) {
   }
+
 
   topicSelected: TopicDto[] = [];
 
@@ -32,7 +36,8 @@ export class LbFormCardComponent implements OnInit {
     description: '',
     imgSrc: '',
     postSrc: '',
-    topic: ''
+    topic: '',
+    id: '',
   });
   disableAddTopic = false;
   filteredOptions: Observable<TopicDto[]> | undefined;
@@ -43,11 +48,12 @@ export class LbFormCardComponent implements OnInit {
   newTopic: TopicDto[] = [];
 
   ngOnInit(): void {
-    this.loadingService.startLoading();
     this.postService.getListTopic().subscribe(ele => {
       this.topicDto = ele;
-      this.loadingService.stopLoading();
-
+      this.checkoutForm.patchValue(this.data.post);
+    });
+    this.topic$.getListTopicByIdPost(this.data.post.id).subscribe(list => {
+      this.topicSelected = list.data;
     });
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -63,6 +69,7 @@ export class LbFormCardComponent implements OnInit {
     // @ts-ignore
     return this.topicDto.filter(topic => topic.title.toLowerCase().includes(filterValue));
   }
+
 
   displayFn(topic: TopicDto): string {
 
@@ -92,14 +99,13 @@ export class LbFormCardComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.loadingService.startLoadingForm();
     console.warn('Your order has been submitted', this.checkoutForm.value);
     const postDto: PostDto = new PostDto();
     postDto.postSrc = this.checkoutForm.value.postSrc === '' ? null : this.checkoutForm.value.postSrc;
     postDto.imgSrc = this.checkoutForm.value.imgSrc === '' ? null : this.checkoutForm.value.imgSrc;
     postDto.description = this.checkoutForm.value.description === '' ? null : this.checkoutForm.value.description;
     postDto.title = this.checkoutForm.value.title === '' ? null : this.checkoutForm.value.title;
-
+    postDto.id = this.checkoutForm.value.id;
     postDto.newTopic = this.topicSelected.filter(ele => !ele.id);
     postDto.listId = [];
     this.topicSelected.forEach(ele => {
@@ -109,12 +115,13 @@ export class LbFormCardComponent implements OnInit {
     });
     const listPostDto: PostDto[] = [];
     listPostDto.push(postDto);
-    this.postService.create(listPostDto).subscribe(ele => {
-      this.alertService.success('Tạo thành công');
+    this.postService.update(listPostDto).subscribe(ele => {
+      this.alertService.success('Cập nhật thành công');
       this.checkoutForm.reset();
       this.topicSelected = [];
-      this.loadingService.stopLoadingForm();
+      window.location.reload();
     });
 
   }
+
 }

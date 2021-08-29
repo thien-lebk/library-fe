@@ -16,23 +16,26 @@ import { CheckBoxTrueFalseComponent } from './ag-grid/check-box-true-false/check
 import { RemoveRowComponent } from './ag-grid/remove-row/remove-row.component';
 import { LoadingCommonComponent } from './loading-common/loading-common.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DialogEditLbCardItemWithReviewComponent } from './library/lb-card-item-with-review/dialog-edit-lb-card-item-with-review/dialog-edit-lb-card-item-with-review.component';
 
 
 
 @NgModule({
-  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent, LoadingCommonComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    DropdownModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatProgressBarModule
-  ],
+  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent, LoadingCommonComponent, DialogEditLbCardItemWithReviewComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        DropdownModule,
+        MatAutocompleteModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule
+    ],
     exports: [
         LbCardItemWithReviewComponent,
         HeaderComponent,

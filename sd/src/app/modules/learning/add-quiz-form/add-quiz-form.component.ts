@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 import {CheckBoxTrueFalseComponent} from '../../../shared/ag-grid/check-box-true-false/check-box-true-false.component';
 import {RemoveRowComponent} from '../../../shared/ag-grid/remove-row/remove-row.component';
 import {AlertService} from '../../../services/alert/alertService';
-import {LoadingService} from '../../../services/alert/loadingService';
+import {LoadingService} from '../../../services/loadingService';
 
 
 @Component({

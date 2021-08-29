@@ -5,8 +5,6 @@ import {LbFormCardComponent} from './shared/library/lb-form-card/lb-form-card.co
 
 const routes: Routes = [];
 
-// <app-library></app-library>
-
 @NgModule({
   imports: [RouterModule.forRoot(routes), RouterModule.forRoot([
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
