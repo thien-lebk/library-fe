@@ -20,9 +20,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DialogEditLbCardItemWithReviewComponent } from './library/lb-card-item-with-review/dialog-edit-lb-card-item-with-review/dialog-edit-lb-card-item-with-review.component';
 
 
-
 @NgModule({
-  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent, RemoveRowComponent, LoadingCommonComponent, DialogEditLbCardItemWithReviewComponent],
+  declarations: [LbCardItemWithReviewComponent, LbFormCardComponent, HeaderComponent, FooterComponent, DropDownComponent, CheckBoxTrueFalseComponent,
+    RemoveRowComponent,
+    LoadingCommonComponent,
+    DialogEditLbCardItemWithReviewComponent],
     imports: [
         CommonModule,
         FormsModule,
